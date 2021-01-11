@@ -39,4 +39,9 @@ public class PersonService{
         }
     }
 
+
+    public List<Person> findPersonWithOutLicense(){
+        return personRepository.findByNoLicense();
+    }
+
 }
