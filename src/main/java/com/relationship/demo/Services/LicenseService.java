@@ -20,8 +20,19 @@ public class LicenseService {
         return licenseRepository.findAll();
     }
 
-    public License addLicense(License license){
-        return  licenseRepository.save(license);
+    public License addLicense(License l){
+        l.setNumber(this.generateLicenseNumber());
+        return  licenseRepository.save(l);
+    }
+
+
+    public int generateLicenseNumber() {
+        License l = licenseRepository.findTopByOrderByNumberDesc();
+        if(l == null)
+            return 1;
+        int largestNumber = l.getNumber();
+        largestNumber++;
+        return (largestNumber);
     }
 
 

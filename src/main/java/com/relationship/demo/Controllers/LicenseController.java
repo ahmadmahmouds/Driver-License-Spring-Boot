@@ -6,9 +6,11 @@ import com.relationship.demo.models.License;
 import com.relationship.demo.models.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -29,5 +31,18 @@ public class LicenseController {
         model.addAttribute("persons",personNoLicense);
 
         return "license/new.jsp";
+    }
+
+    @RequestMapping("/createlicense")
+    public String addLicense(@Valid @ModelAttribute("license") License license, BindingResult result){
+        System.out.println("iam in method------->");
+        if (result.hasErrors()){
+            System.out.println("has error------->");
+
+            return "license/new.jsp";
+        }else {
+            licenseService.addLicense(license);
+            return "redirect:/person/"+license.getPerson().getId();
+        }
     }
 }

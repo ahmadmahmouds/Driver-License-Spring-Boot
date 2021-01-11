@@ -14,6 +14,9 @@
 <body>
 <center>
     <h1><c:out value="${person.firstName}"/> <c:out value="${person.lastName}"/></h1>
+    <p> License:<c:out value="${person.license.numberAsString}"/></p>
+    <p>State: <c:out value="${person.license.state}"/></p>
+    <p>Expiration Date:<c:out value="${person.license.expirationDate}"/></p>
 
 </center>
 

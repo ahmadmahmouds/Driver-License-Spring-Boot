@@ -15,7 +15,7 @@
 <body>
 <center>
     <h1>Add a new Person </h1>
-    <form:form action="/create" method="POST" modelAttribute="license">
+    <form:form action="/createlicense" method="POST" modelAttribute="license">
         <div class="form-group">
             <form:label path="person">Person</form:label>
             <form:errors path="person"/>

@@ -1,5 +1,7 @@
 package com.relationship.demo.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -14,7 +16,7 @@ public class License {
 
     private Integer number;
 
-
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date expirationDate;
 
 
@@ -106,5 +108,13 @@ public class License {
     protected void onUpdate(){
 
         this.updatedAt = new Date();
+    }
+
+    public String getNumberAsString() {
+        int numZeros = 7 - String.valueOf(this.number).length();
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < numZeros; i++)
+            sb.append('0');
+        return String.format("%s%d", sb, this.number);
     }
 }
